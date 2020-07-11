@@ -1,0 +1,16 @@
+body {
+  background-image: linear-gradient(90deg, #4e8eee 30%, #6933a7 90%);
+  background-repeat: repeat-y;
+  background-size: cover;
+  margin: 10px;
+  padding: 10px;
+  /* justify-content: center; */
+  /* height: 100vh; */
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20%;
+}
