@@ -3,7 +3,6 @@ import Axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import { MovieContext } from "../MovieContext";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Movie from "./Movie";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -13,17 +12,17 @@ const CssTextField = withStyles({
       color: "white",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "white",
+      borderBottomColor: "yellow",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "white",
-      },
-      "&:hover fieldset": {
         borderColor: "yellow",
       },
+      "&:hover fieldset": {
+        borderColor: "green",
+      },
       "&.Mui-focused fieldset": {
-        borderColor: "white",
+        borderColor: "yellow",
       },
     },
   },
@@ -32,7 +31,9 @@ const CssTextField = withStyles({
 const useStyles = makeStyles((theme) => ({
   textInput: {
     textAlign: "center",
-    color: "white",
+    color: "#FAD02E",
+    fontSize: "15px",
+    textTransform: "uppercase",
   },
   margin: {
     margin: theme.spacing(1),
@@ -57,7 +58,7 @@ const SearchBox = () => {
 
   return (
     <div>
-      <div style={{ margin: "10px", padding: "5px" }}>
+      <div style={{ margin: "10px", padding: "5px", minWidth: "250px" }}>
         <CssTextField
           // fullWidth
           style={{

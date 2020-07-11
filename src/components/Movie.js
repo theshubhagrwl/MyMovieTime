@@ -59,10 +59,21 @@ const Movie = () => {
       <div className={classes.root}>
         <Grid container spacing={3} justify="center" alignItems="center">
           {contextData.searchArray.map((item, index) => {
-            if (item.Poster != "N/A") {
+            if (item.Poster !== "N/A") {
               return (
-                <Grid item xs={4} key={index} style={{ width: "300px" }}>
-                  <Card style={{ height: "620px" }} raised={true}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={4}
+                  lg={3}
+                  key={index}
+                  style={{ width: "300px" }}
+                >
+                  <Card
+                    style={{ height: "620px" }}
+                    raised={true}
+                    onClick={() => handleClick(item)}
+                  >
                     <CardActionArea>
                       <CardMedia
                         image={item.Poster}

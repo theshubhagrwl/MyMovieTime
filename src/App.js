@@ -12,9 +12,8 @@ function App() {
     <MovieProvider>
       <div className="App">
         <Typography
-          variant="h2"
-          gutterBottom
-          style={{ color: "#fff", fontWeight: "bold" }}
+          variant="h1"
+          style={{ color: "#fff", fontWeight: "light", minWidth: "200px" }}
         >
           Movie Time Calculator
         </Typography>
