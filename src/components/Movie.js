@@ -43,7 +43,7 @@ const Movie = () => {
     // console.log(movieId);
     try {
       const response = await Axios.get(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&i=${movieId}`
+        `https://www.omdbapi.com/?apikey=${API_KEY}&i=${movieId}`
       );
       movieTime = response.data.Runtime;
       totalMovieTime = contextData.totalTime + convertToInt(movieTime);

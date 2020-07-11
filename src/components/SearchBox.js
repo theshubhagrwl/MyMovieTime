@@ -48,7 +48,7 @@ const SearchBox = () => {
   useEffect(() => {
     try {
       Axios.get(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
       ).then((res) => contextData.setSearchArray(res.data.Search));
       console.log("Search Arr", contextData.searchArray);
     } catch (error) {
