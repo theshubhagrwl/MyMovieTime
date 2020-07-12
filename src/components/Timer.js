@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { MovieContext } from "../MovieContext";
 import Typography from "@material-ui/core/Typography";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   hrsAndMinCount: {
     color: "#FFF222", //yellow
-    fontSize: "6rem",
+    fontSize: "5.5rem",
+    fontWeight: "lighter",
   },
   hrsAndMinText: {
     color: "white",
@@ -40,8 +41,10 @@ const Timer = () => {
               flexDirection: "row",
               alignItems: "baseline",
               justifyContent: "center",
-              padding: "5px",
-              margin: "5px",
+              paddingTop: "5px",
+              paddingBottom: "5px",
+              marginTop: "5px",
+              marginBottom: "5px",
             }}
           >
             <Typography classes={{ root: classes.hrsAndMinCount }}>

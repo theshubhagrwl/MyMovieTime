@@ -6,6 +6,7 @@ import Timer from "./components/Timer";
 import Typography from "@material-ui/core/Typography";
 
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -13,13 +14,27 @@ function App() {
       <div className="App">
         <Typography
           variant="h1"
-          style={{ color: "#fff", fontWeight: "light", minWidth: "200px" }}
+          style={{
+            color: "#fff",
+            fontWeight: "bold",
+            minWidth: "200px",
+            fontSize: "4.5rem",
+          }}
         >
           Movie Time Calculator
         </Typography>
         <Timer />
         <SearchBox />
         <Movie />
+        <div
+          style={{
+            minHeight: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Footer />
+        </div>
       </div>
     </MovieProvider>
   );

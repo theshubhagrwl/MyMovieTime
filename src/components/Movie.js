@@ -57,13 +57,13 @@ const Movie = () => {
   if (contextData.searchArray !== undefined) {
     return (
       <div className={classes.root}>
-        <Grid container spacing={3} justify="center" alignItems="center">
+        <Grid container spacing={4} justify="center" alignItems="center">
           {contextData.searchArray.map((item, index) => {
             if (item.Poster !== "N/A") {
               return (
                 <Grid
                   item
-                  xs={6}
+                  xs={12}
                   sm={4}
                   lg={3}
                   key={index}
@@ -110,7 +110,7 @@ const Movie = () => {
                         onClick={() => handleClick(item)}
                         style={{ marginBottom: "15px" }}
                       >
-                        Watched
+                        Mark As Watched
                       </Button>
                     </CardActions>
                   </Card>

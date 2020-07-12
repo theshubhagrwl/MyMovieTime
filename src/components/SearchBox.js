@@ -50,7 +50,7 @@ const SearchBox = () => {
       Axios.get(
         `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
       ).then((res) => contextData.setSearchArray(res.data.Search));
-      console.log("Search Arr", contextData.searchArray);
+      // console.log("Search Arr", contextData.searchArray);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +58,14 @@ const SearchBox = () => {
 
   return (
     <div>
-      <div style={{ margin: "10px", padding: "5px", minWidth: "250px" }}>
+      <div
+        style={{
+          marginBottom: "15px",
+          paddingTop: "5px",
+          paddingBottom: "5px",
+          minWidth: "250px",
+        }}
+      >
         <CssTextField
           // fullWidth
           style={{
