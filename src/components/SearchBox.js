@@ -14,6 +14,9 @@ const CssTextField = withStyles({
     "& .MuiInput-underline:after": {
       borderBottomColor: "yellow",
     },
+    "& .MuiInput-underline:before": {
+      borderBottomColor: "white",
+    },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "yellow",
@@ -32,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   textInput: {
     textAlign: "center",
     color: "#FAD02E",
-    fontSize: "15px",
+    fontSize: "18px",
     textTransform: "uppercase",
   },
   margin: {
@@ -75,7 +78,7 @@ const SearchBox = () => {
           }}
           className={classes.margin}
           label="Enter a movie name"
-          variant="outlined"
+          variant="standard"
           value={searchTerm}
           onChange={(e) => {
             e.preventDefault();
@@ -90,6 +93,7 @@ const SearchBox = () => {
           }}
           InputLabelProps={{
             className: classes.textInput,
+            style: { marginLeft: "2rem" },
           }}
         />
       </div>

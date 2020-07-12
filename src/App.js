@@ -16,9 +16,9 @@ function App() {
           variant="h1"
           style={{
             color: "#fff",
-            fontWeight: "bold",
+            fontWeight: "bolder",
             minWidth: "200px",
-            fontSize: "4.5rem",
+            fontSize: "4.3rem",
           }}
         >
           Movie Time Calculator

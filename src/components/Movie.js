@@ -57,7 +57,13 @@ const Movie = () => {
   if (contextData.searchArray !== undefined) {
     return (
       <div className={classes.root}>
-        <Grid container spacing={4} justify="center" alignItems="center">
+        <Grid
+          container
+          spacing={4}
+          justify="center"
+          alignItems="center"
+          style={{ padding: "20px" }}
+        >
           {contextData.searchArray.map((item, index) => {
             if (item.Poster !== "N/A") {
               return (
