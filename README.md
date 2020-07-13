@@ -4,7 +4,7 @@
 
 [![Reddit](https://img.shields.io/reddit/user-karma/combined/theshubhagrwl?style=social)](https://www.reddit.com/user/theshubhagrwl)
 [![Github](https://img.shields.io/github/followers/theshubhagrwl?style=social)](https://github.com/theshubhagrwl)
-[![Repo Stars](https://img.shields.io/github/stars/theshubhagrwl/MyMovieTime?label=Stars)](www.github.com/theshubhagrwl/MyMovieTime)
+[![Repo Stars](https://img.shields.io/github/stars/theshubhagrwl/MyMovieTime)](https://github.com/theshubhagrwl/MyMovieTime)
 [![Twitter](https://img.shields.io/twitter/follow/theshubhagrwl?label=Follow)](https://twitter.com/theshubhagrwl)
 
 <hr>
