@@ -6,6 +6,19 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value]);
+  return debouncedValue;
+};
+
 const CssTextField = withStyles({
   root: {
     "& label.Mui-focused": {
@@ -22,7 +35,7 @@ const CssTextField = withStyles({
         borderColor: "yellow",
       },
       "&:hover fieldset": {
-        borderColor: "green",
+        borderColor: "white",
       },
       "&.Mui-focused fieldset": {
         borderColor: "yellow",
@@ -36,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: "#FAD02E",
     fontSize: "18px",
+    paddingTop: "10px",
     textTransform: "uppercase",
   },
   margin: {
@@ -48,16 +62,35 @@ const SearchBox = () => {
   const contextData = useContext(MovieContext);
   const classes = useStyles();
 
-  useEffect(() => {
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  const callApi = () => {
     try {
       Axios.get(
         `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
-      ).then((res) => contextData.setSearchArray(res.data.Search));
+      ).then((res) => {
+        contextData.setLoading(false);
+        if (res.data.Search !== undefined) {
+          contextData.setSearchArray(res.data.Search);
+        } else {
+          contextData.setSearchArray([]);
+        }
+      });
       // console.log("Search Arr", contextData.searchArray);
+      console.log("Search term", searchTerm);
     } catch (error) {
       console.log(error);
     }
-  }, [searchTerm]);
+  };
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      contextData.setLoading(true);
+      callApi();
+    }
+
+    // callApi();
+  }, [debouncedSearchTerm]);
 
   return (
     <div>
@@ -81,7 +114,7 @@ const SearchBox = () => {
           variant="standard"
           value={searchTerm}
           onChange={(e) => {
-            e.preventDefault();
+            // e.preventDefault();
             setSearchTerm(e.target.value);
           }}
           id="custom-css-outlined-input"

@@ -43,8 +43,8 @@ const Timer = () => {
               justifyContent: "center",
               paddingTop: "5px",
               paddingBottom: "5px",
-              marginTop: "5px",
-              marginBottom: "5px",
+              // marginTop: "2px",
+              // marginBottom: "2px",
             }}
           >
             <Typography classes={{ root: classes.hrsAndMinCount }}>
@@ -85,31 +85,6 @@ const Timer = () => {
             to get started
           </div>
         )}
-        {/* <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "baseline",
-              justifyContent: "center",
-              padding: "5px",
-            }}
-          >
-            <Typography classes={{ root: classes.hrsAndMinCount }}>
-              00
-            </Typography>{" "}
-            <Typography
-              classes={{ root: classes.hrsAndMinText }}
-              style={{ paddingRight: "10px" }}
-            >
-              hr
-            </Typography>{" "}
-            <Typography classes={{ root: classes.hrsAndMinCount }}>
-              00
-            </Typography>{" "}
-            <Typography classes={{ root: classes.hrsAndMinText }}>
-              min
-            </Typography>{" "}
-          </div> */}
       </Typography>
     </div>
   );

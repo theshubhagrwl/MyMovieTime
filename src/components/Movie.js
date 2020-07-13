@@ -12,6 +12,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "../App.css";
+import loadingImg from "./loading.gif";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -40,7 +41,6 @@ const Movie = () => {
     var movieId = val.imdbID;
     var movieTime = "";
     var totalMovieTime = 0;
-    // console.log(movieId);
     try {
       const response = await Axios.get(
         `https://www.omdbapi.com/?apikey=${API_KEY}&i=${movieId}`
@@ -48,13 +48,12 @@ const Movie = () => {
       movieTime = response.data.Runtime;
       totalMovieTime = contextData.totalTime + convertToInt(movieTime);
       contextData.setTotalTime(totalMovieTime);
-      // console.log("time", totalMovieTime);
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (contextData.searchArray !== undefined) {
+  if (!contextData.loading && contextData.searchArray !== undefined) {
     return (
       <div className={classes.root}>
         <Grid
@@ -73,7 +72,7 @@ const Movie = () => {
                   sm={4}
                   lg={3}
                   key={index}
-                  style={{ width: "300px" }}
+                  style={{ width: "250px" }}
                 >
                   <Card
                     style={{ height: "620px" }}
@@ -127,11 +126,12 @@ const Movie = () => {
         </Grid>
       </div>
     );
-  } else if (
-    contextData.searchArray === undefined ||
-    contextData.searchArray === []
-  ) {
-    return <div> </div>;
+  } else if (contextData.loading === true) {
+    return (
+      <div style={{ color: "white", textAlign: "center" }}>
+        <img src={loadingImg} alt="loading" />
+      </div>
+    );
   }
   // else {
   //   return <div>Loading</div>;
