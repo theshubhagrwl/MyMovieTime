@@ -55,76 +55,62 @@ const Movie = () => {
 
   if (!contextData.loading && contextData.searchArray !== undefined) {
     return (
-      <div className={classes.root}>
-        <Grid
-          container
-          spacing={4}
-          justify="center"
-          alignItems="center"
-          style={{ padding: "20px" }}
-        >
-          {contextData.searchArray.map((item, index) => {
-            if (item.Poster !== "N/A") {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={4}
-                  lg={3}
-                  key={index}
-                  style={{ width: "250px" }}
+      <Grid container spacing={4} justify="center">
+        {contextData.searchArray.map((item, index) => {
+          if (item.Poster !== "N/A") {
+            return (
+              <Grid item xs={12} sm={4} lg={3} xl={3} key={index}>
+                <Card
+                  raised={true}
+                  onClick={() => handleClick(item)}
+                  className={classes.root}
                 >
-                  <Card
-                    style={{ height: "620px" }}
-                    raised={true}
-                    onClick={() => handleClick(item)}
-                  >
-                    <CardActionArea>
-                      <CardMedia
-                        image={item.Poster}
-                        title={item.Title}
-                        style={{ height: "450px" }}
-                      />
-                      <div className={classes.titleText}>
-                        <CardContent>
-                          <Typography
-                            gutterBottom
-                            variant="h5"
-                            component="h2"
-                            noWrap
-                          >
-                            {item.Title}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                          >
-                            {item.Year}
-                          </Typography>
-                        </CardContent>
-                      </div>
-                    </CardActionArea>
-                    <CardActions
-                      style={{ justifyContent: "center", alignItems: "center" }}
-                    >
-                      <Button
-                        size="medium"
-                        variant="contained"
-                        color="primary"
-                        onClick={() => handleClick(item)}
-                        style={{ marginBottom: "15px" }}
+                  <CardActionArea>
+                    <CardMedia
+                      image={item.Poster}
+                      title={item.Title}
+                      height="450px"
+                      width="auto"
+                      component="img"
+                    />
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h2"
+                        noWrap
+                        className={classes.titleText}
                       >
-                        Mark As Watched
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              );
-            }
-          })}
-        </Grid>
-      </div>
+                        {item.Title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {item.Year}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions
+                    style={{ justifyContent: "center", alignItems: "center" }}
+                  >
+                    <Button
+                      size="medium"
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleClick(item)}
+                      style={{ marginBottom: "15px" }}
+                    >
+                      Mark As Watched
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          }
+        })}
+      </Grid>
     );
   } else if (contextData.loading === true) {
     return (
@@ -133,9 +119,6 @@ const Movie = () => {
       </div>
     );
   }
-  // else {
-  //   return <div>Loading</div>;
-  // }
 };
 
 export default Movie;
