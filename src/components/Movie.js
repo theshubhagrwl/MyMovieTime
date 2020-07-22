@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import Axios from "axios";
 import { MovieContext } from "../MovieContext";
@@ -15,6 +15,19 @@ import "../App.css";
 import loadingImg from "./loading.gif";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value]);
+  return debouncedValue;
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +49,8 @@ function convertToInt(string) {
 const Movie = () => {
   const contextData = useContext(MovieContext);
   const classes = useStyles();
+  const [mTime, setMTime] = useState({});
+  const time = useDebounce(mTime, 500);
 
   const handleClick = async (val) => {
     var movieId = val.imdbID;
@@ -47,11 +62,21 @@ const Movie = () => {
       );
       movieTime = response.data.Runtime;
       totalMovieTime = contextData.totalTime + convertToInt(movieTime);
+      contextData.setLoading(false);
       contextData.setTotalTime(totalMovieTime);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (time) {
+      contextData.setLoading(true);
+      handleClick(time);
+    }
+
+    // callApi();
+  }, [time]);
 
   if (!contextData.loading && contextData.searchArray !== undefined) {
     return (
@@ -62,7 +87,7 @@ const Movie = () => {
               <Grid item xs={12} sm={4} lg={3} xl={3} key={index}>
                 <Card
                   raised={true}
-                  onClick={() => handleClick(item)}
+                  onClick={() => setMTime(item)}
                   className={classes.root}
                 >
                   <CardActionArea>
@@ -99,7 +124,7 @@ const Movie = () => {
                       size="medium"
                       variant="contained"
                       color="primary"
-                      onClick={() => handleClick(item)}
+                      onClick={() => setMTime(item)}
                       style={{ marginBottom: "15px" }}
                     >
                       Mark As Watched
