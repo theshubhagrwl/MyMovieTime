@@ -86,10 +86,10 @@ const Movie = () => {
               <Grid item xs={12} sm={4} lg={3} xl={3} key={index}>
                 <Card
                   raised={true}
-                  onClick={() => setMTime(item)}
+                  // onClick={() => setMTime(item)}
                   className={classes.root}
                 >
-                  <CardActionArea>
+                  <CardActionArea onClick={() => setMTime(item)}>
                     <CardMedia
                       image={item.Poster}
                       title={item.Title}
