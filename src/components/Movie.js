@@ -51,6 +51,7 @@ const Movie = () => {
   const classes = useStyles();
   const [mTime, setMTime] = useState({});
   const time = useDebounce(mTime, 500);
+  const [IMDBrating, setIMDBrating] = useState("");
 
   const handleClick = async (val) => {
     var movieId = val.imdbID;
@@ -74,8 +75,6 @@ const Movie = () => {
       contextData.setLoading(true);
       handleClick(time);
     }
-
-    // callApi();
   }, [time]);
 
   if (!contextData.loading && contextData.searchArray !== undefined) {
@@ -124,10 +123,15 @@ const Movie = () => {
                       size="medium"
                       variant="contained"
                       color="primary"
-                      onClick={() => setMTime(item)}
                       style={{ marginBottom: "15px" }}
                     >
-                      Mark As Watched
+                      <a
+                        href={`https://www.imdb.com/title/${item.imdbID}`}
+                        target="_blank"
+                        style={{ textDecoration: "none", color: "white" }}
+                      >
+                        Check On IMDB
+                      </a>
                     </Button>
                   </CardActions>
                 </Card>
