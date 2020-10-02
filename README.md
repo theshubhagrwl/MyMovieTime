@@ -6,6 +6,10 @@
 [![Github](https://img.shields.io/github/followers/theshubhagrwl?style=social)](https://github.com/theshubhagrwl)
 [![Twitter](https://img.shields.io/twitter/follow/theshubhagrwl?label=Follow)](https://twitter.com/theshubhagrwl)
 
+[![Issues](https://img.shields.io/github/issues/theshubhagrwl/MyMovieTime?style=flat-square)]()
+[![Stars](https://img.shields.io/github/stars/theshubhagrwl/MyMovieTime?style=flat-square)]()
+[![Forks](https://img.shields.io/github/forks/theshubhagrwl/MyMovieTime?style=flat-square)]()
+
 <hr>
 <img src='./demo/mymovietime.gif'> 
 <hr>
