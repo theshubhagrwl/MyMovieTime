@@ -12,7 +12,7 @@ export default function Footer() {
       /> */}
       India by{" "}
       <a
-        href="https://www.instagram.com/theshubhagrwl/"
+        href="https://theshubhagrwl.netlify.app/"
         style={{ color: "yellow", textDecoration: "none" }}
       >
         Shubh
