@@ -6,6 +6,7 @@ export const MovieProvider = (props) => {
   const [searchArray, setSearchArray] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [watchedMovieList, setWatchedMovieList] = useState([]);
   return (
     <MovieContext.Provider
       value={{
@@ -15,6 +16,8 @@ export const MovieProvider = (props) => {
         setSearchArray,
         setTotalTime,
         setLoading,
+        watchedMovieList,
+        setWatchedMovieList,
       }}
     >
       {props.children}

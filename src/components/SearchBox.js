@@ -5,6 +5,7 @@ import { MovieContext } from "../MovieContext";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+const memCache = {};
 
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -66,16 +67,20 @@ const SearchBox = () => {
 
   const callApi = () => {
     try {
-      Axios.get(
-        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
-      ).then((res) => {
+      if (memCache[searchTerm]) {
         contextData.setLoading(false);
-        if (res.data.Search !== undefined) {
-          contextData.setSearchArray(res.data.Search);
-        } else {
-          contextData.setSearchArray([]);
-        }
-      });
+        contextData.setSearchArray(memCache[searchTerm]);
+      } else {
+        Axios.get(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`).then((res) => {
+          contextData.setLoading(false);
+          if (res.data.Search !== undefined) {
+            contextData.setSearchArray(res.data.Search);
+            memCache[searchTerm] = res.data.Search;
+          } else {
+            contextData.setSearchArray([]);
+          }
+        });
+      }
       // console.log("Search Arr", contextData.searchArray);
       console.log("Search term", searchTerm);
     } catch (error) {
