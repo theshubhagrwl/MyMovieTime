@@ -6,6 +6,8 @@ export const MovieProvider = (props) => {
   const [searchArray, setSearchArray] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   return (
     <MovieContext.Provider
       value={{
@@ -15,6 +17,8 @@ export const MovieProvider = (props) => {
         setSearchArray,
         setTotalTime,
         setLoading,
+        error,
+        setError,
       }}
     >
       {props.children}
