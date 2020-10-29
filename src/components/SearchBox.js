@@ -3,6 +3,7 @@ import Axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import { MovieContext } from "../MovieContext";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -55,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
+  spanError: {
+    color: '#fff',
+  },
 }));
 
 const SearchBox = () => {
@@ -66,6 +70,7 @@ const SearchBox = () => {
 
   const callApi = () => {
     try {
+      contextData.setError(null);
       Axios.get(
         `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
       ).then((res) => {
@@ -74,6 +79,10 @@ const SearchBox = () => {
           contextData.setSearchArray(res.data.Search);
         } else {
           contextData.setSearchArray([]);
+        }
+
+        if (res.data.Error) {
+          contextData.setError(res.data.Error)
         }
       });
       // console.log("Search Arr", contextData.searchArray);
@@ -130,6 +139,11 @@ const SearchBox = () => {
           }}
         />
       </div>
+      {!!contextData.error && (
+        <Typography className={classes.spanError}>
+          {contextData.error}
+        </Typography>
+      )}
     </div>
   );
 };
