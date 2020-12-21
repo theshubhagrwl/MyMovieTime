@@ -26,3 +26,6 @@
 - JS Debouncing
 
 #### Check out the app and provide your valuable feedback😉
+
+## Contributing Guid
+If you want to contribute to this project then you can check the [Contributing Guide Here](https://github.com/theshubhagrwl/MyMovieTime/blob/master/CONTRIBUTING.md)
