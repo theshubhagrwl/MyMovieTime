@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "../App.css";
 import loadingImg from "./loading.gif";
+import { ButtonGroup } from "@material-ui/core";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -84,55 +85,63 @@ const Movie = () => {
           if (item.Poster !== "N/A") {
             return (
               <Grid item xs={12} sm={4} lg={3} xl={3} key={index}>
-                <Card
-                  raised={true}
-                  // onClick={() => setMTime(item)}
-                  className={classes.root}
-                >
-                  <CardActionArea onClick={() => setMTime(item)}>
-                    <CardMedia
-                      image={item.Poster}
-                      title={item.Title}
-                      height="450px"
-                      width="auto"
-                      component="img"
-                    />
-                    <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h2"
-                        noWrap
-                        className={classes.titleText}
-                      >
-                        {item.Title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        {item.Year}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
+                <Card raised={true} className={classes.root}>
+                  <CardMedia
+                    image={item.Poster}
+                    title={item.Title}
+                    height="450px"
+                    width="auto"
+                    component="img"
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      noWrap
+                      className={classes.titleText}
+                    >
+                      {item.Title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {item.Year}
+                    </Typography>
+                  </CardContent>
                   <CardActions
                     style={{ justifyContent: "center", alignItems: "center" }}
                   >
-                    <Button
-                      size="medium"
-                      variant="contained"
-                      color="primary"
-                      style={{ marginBottom: "15px" }}
+                    <ButtonGroup
+                      orientation="vertical"
+                      aria-label="vertical button group"
                     >
-                      <a
-                        href={`https://www.imdb.com/title/${item.imdbID}`}
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
+                      <Button
+                        size="medium"
+                        variant="contained"
+                        color="primary"
+                        style={{ marginBottom: "15px" }}
+                        onClick={() => setMTime(item)}
                       >
-                        Check On IMDB
-                      </a>
-                    </Button>
+                        Add This Movie
+                      </Button>
+                      <Button
+                        size="medium"
+                        variant="contained"
+                        color="primary"
+                        style={{ marginBottom: "15px" }}
+                      >
+                        <a
+                          href={`https://www.imdb.com/title/${item.imdbID}`}
+                          target="_blank"
+                          style={{ textDecoration: "none", color: "white" }}
+                        >
+                          Check On IMDB
+                        </a>
+                      </Button>
+                    </ButtonGroup>
                   </CardActions>
                 </Card>
               </Grid>

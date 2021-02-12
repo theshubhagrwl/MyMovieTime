@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   spanError: {
-    color: '#fff',
+    color: "#fff",
   },
 }));
 
@@ -69,11 +69,13 @@ const SearchBox = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const callApi = () => {
+    let call =
+      process.env.REACT_APP_PRODUCTION == "true"
+        ? `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
+        : "testData.json";
     try {
       contextData.setError(null);
-      Axios.get(
-        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
-      ).then((res) => {
+      Axios.get(call).then((res) => {
         contextData.setLoading(false);
         if (res.data.Search !== undefined) {
           contextData.setSearchArray(res.data.Search);
@@ -82,10 +84,9 @@ const SearchBox = () => {
         }
 
         if (res.data.Error) {
-          contextData.setError(res.data.Error)
+          contextData.setError(res.data.Error);
         }
       });
-      // console.log("Search Arr", contextData.searchArray);
       console.log("Search term", searchTerm);
     } catch (error) {
       console.log(error);
@@ -97,8 +98,6 @@ const SearchBox = () => {
       contextData.setLoading(true);
       callApi();
     }
-
-    // callApi();
   }, [debouncedSearchTerm]);
 
   return (
@@ -112,7 +111,6 @@ const SearchBox = () => {
         }}
       >
         <CssTextField
-          // fullWidth
           style={{
             margin: "20px",
             width: "22ch",
@@ -123,7 +121,6 @@ const SearchBox = () => {
           variant="standard"
           value={searchTerm}
           onChange={(e) => {
-            // e.preventDefault();
             setSearchTerm(e.target.value);
           }}
           id="custom-css-outlined-input"
