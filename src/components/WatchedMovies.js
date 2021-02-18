@@ -13,33 +13,30 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    // backgroundColor: theme.palette.background.paper,
     marginBottom: "10vh",
-    // background: "linear-gradient(
-    //     to right,
-    //     #0c1421,
-    //     #110e1a,
-    //     #100912,
-    //     #0b0408,
-    //     #000000,
-    //   )",
-    //   backgroundRepeat:" repeat-y",
-    //   backgroundSize:" cover"
+    background: "transparent",
   },
   gridList: {
     flexWrap: "nowrap",
-    height: "300px",
-    alignItems: "center",
     justifyContent: "center",
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
+    width: "100%",
   },
   title: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary,
   },
   titleBar: {
-    background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+    // background:
+    //   "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+  },
+  gridTile: {
+    width: "100%",
+  },
+  image: {
+    opacity: 0.4,
+    width: "100%",
+    height: "100%",
   },
 }));
 
@@ -49,17 +46,16 @@ const WatchedMovies = () => {
 
   return (
     <div className={classes.root}>
-      {/* {contextData.watched.length > 1 ? ( */}
-      {fakeData.length > 1 ? (
+      {/* {fakeData.length > 1 ? ( */}
+      {/* {fakeData.map((tile) => ( */}
+      {contextData.watched.length > 0 ? (
         <GridList className={classes.gridList} cols={5} cellHeight={"auto"}>
-          {/* {contextData.watched.map((tile) => ( */}
-          {fakeData.map((tile) => (
-            <GridListTile key={tile.imdbID}>
+          {contextData.watched.map((tile) => (
+            <GridListTile key={tile.imdbID} className={classes.gridTile}>
               <img
+                className={classes.image}
                 src={tile.Poster}
                 alt={tile.Title}
-                height="auto"
-                width="auto"
               />
               <GridListTileBar
                 title={tile.Title}
