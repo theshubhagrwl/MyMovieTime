@@ -4,11 +4,11 @@ import { MovieProvider } from "./MovieContext";
 import Movie from "./components/Movie";
 import Timer from "./components/Timer";
 import Typography from "@material-ui/core/Typography";
-
 import "./App.css";
 import Footer from "./components/Footer";
+import WatchedMovies from "./components/WatchedMovies";
 
-function App() {
+const App = () => {
   return (
     <MovieProvider>
       <div className="App">
@@ -25,6 +25,7 @@ function App() {
         </Typography>
         <Timer />
         <SearchBox />
+        <WatchedMovies />
         <Movie />
         <div
           style={{
@@ -38,6 +39,6 @@ function App() {
       </div>
     </MovieProvider>
   );
-}
+};
 
 export default App;
