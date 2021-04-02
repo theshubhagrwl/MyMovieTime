@@ -12,7 +12,7 @@ export default function Footer() {
       /> */}
       India by{" "}
       <a
-        href="https://theshubhagrwl.netlify.app/"
+        href="https://theshubhagrwl.vercel.app/"
         style={{ color: "yellow", textDecoration: "none" }}
       >
         Shubh

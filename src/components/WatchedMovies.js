@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   watchedMovieCard: {
     background: "#3939396b",
+    margin: "2px",
   },
 }));
 
@@ -26,6 +27,7 @@ const WatchedMovies = () => {
   const contextData = useContext(MovieContext);
 
   return (
+    //TODO: A button telling show more cause displaying all movies is a mess!
     <div className={classes.root}>
       {/* {fakeData.length > 1 ? ( */}
       {/* {fakeData.map((tile) => ( */}
