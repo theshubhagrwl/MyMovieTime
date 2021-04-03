@@ -7,11 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import Footer from "./components/Footer";
 import WatchedMovies from "./components/WatchedMovies";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     // <MovieProvider>
     <div className="App">
+      <Navbar />
       <Typography
         variant="h1"
         style={{
