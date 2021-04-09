@@ -14,6 +14,8 @@ import Typography from "@material-ui/core/Typography";
 import "../App.css";
 import loadingImg from "./loading.gif";
 import { ButtonGroup } from "@material-ui/core";
+import { addMovieData } from "../Config/firebaseConfig";
+import { UserContext } from "../UserContext";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -49,6 +51,7 @@ function convertToInt(string) {
 
 const Movie = () => {
   const contextData = useContext(MovieContext);
+  const user = useContext(UserContext);
   const classes = useStyles();
   const [mTime, setMTime] = useState({});
   const time = useDebounce(mTime, 500);
@@ -67,6 +70,11 @@ const Movie = () => {
         // console.log("type", typeof response.data);
         contextData.watched.push(response.data);
       }
+      if (user) {
+        // console.log(contextData.watched);
+        addMovieData(contextData.watched, user.uid);
+      }
+
       movieTime = response.data.Runtime;
       totalMovieTime = contextData.totalTime + convertToInt(movieTime);
       contextData.setLoading(false);

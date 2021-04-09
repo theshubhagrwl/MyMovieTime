@@ -34,7 +34,7 @@ const WatchedMovies = () => {
       {contextData.watched.length > 0 ? (
         <Grid container spacing={3}>
           {contextData.watched.map((tile) => (
-            <Grid item xs className={classes.watchedMovieCard}>
+            <Grid item xs className={classes.watchedMovieCard} key="title">
               <img
                 className={classes.image}
                 src={tile.Poster}
@@ -42,6 +42,9 @@ const WatchedMovies = () => {
               />
               <Typography variant="subtitle1" className={classes.title}>
                 {tile.Title}
+              </Typography>
+              <Typography variant="subtitle2" className={classes.title}>
+                {tile.Year}
               </Typography>
             </Grid>
           ))}

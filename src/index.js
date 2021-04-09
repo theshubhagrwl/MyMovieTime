@@ -8,8 +8,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import "firebase/auth";
 // import firebaseConfig from "./Config/firebaseConfig";
 
-import { MovieProvider } from "./MovieContext";
 import { UserProvider } from "./UserContext";
+import { MovieProvider } from "./MovieContext";
 
 import Signin from "./Signin";
 import Signup from "./Signup";
@@ -20,8 +20,8 @@ import PageNotFound from "./PageNotFound";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MovieProvider>
-      <UserProvider>
+    <UserProvider>
+      <MovieProvider>
         <Router>
           <Switch>
             <Route exact path="/" component={App} />
@@ -31,8 +31,8 @@ ReactDOM.render(
             <Route exact path="*" component={PageNotFound} />
           </Switch>
         </Router>
-      </UserProvider>
-    </MovieProvider>
+      </MovieProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
