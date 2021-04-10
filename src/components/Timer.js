@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   hrsAndMinCount: {
-    color: "#FFF222", //yellow
+    color: "#FFCA5A", //yellow
     fontSize: "5.4rem",
     fontWeight: "lighter",
   },
@@ -68,19 +68,18 @@ const Timer = () => {
           <div
             style={{
               marginTop: "20px",
-              color: "white",
             }}
           >
             Search for your favourite
             <span
               style={{
-                color: "#FFF222",
-                fontWeight: "lighter",
+                color: "#FFCA5A",
+                fontWeight: "light",
                 marginLeft: "0.5rem",
                 marginRight: "0.5rem",
               }}
             >
-              Movies
+              Movie
             </span>
             to get started
           </div>

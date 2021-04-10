@@ -24,23 +24,29 @@ const useDebounce = (value, delay) => {
 const CssTextField = withStyles({
   root: {
     "& label.Mui-focused": {
-      color: "white",
+      color: "black",
+    },
+    "& label": {
+      color: "#FFCA5A",
+      fontWeight: "bold",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "yellow",
+      borderBottomColor: "#FFCA5A",
+      borderBottomWidth: "3px",
     },
     "& .MuiInput-underline:before": {
-      borderBottomColor: "white",
+      borderBottomColor: "black",
+      borderBottomWidth: "3px",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "yellow",
+        borderColor: "#FFCA5A",
       },
       "&:hover fieldset": {
-        borderColor: "white",
+        borderColor: "black",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "yellow",
+        borderColor: "#FFCA5A",
       },
     },
   },
@@ -49,7 +55,7 @@ const CssTextField = withStyles({
 const useStyles = makeStyles((theme) => ({
   textInput: {
     textAlign: "center",
-    color: "#FAD02E",
+    color: "#FFCA5A",
     fontSize: "18px",
     paddingTop: "10px",
     textTransform: "uppercase",
@@ -58,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   spanError: {
-    color: "#fff",
+    color: "#000",
   },
 }));
 
@@ -133,7 +139,7 @@ const SearchBox = () => {
           }}
           InputLabelProps={{
             className: classes.textInput,
-            style: { marginLeft: "2rem" },
+            // style: { marginLeft: "2rem" },
           }}
         />
       </div>
