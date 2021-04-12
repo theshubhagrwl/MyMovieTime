@@ -1,14 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../UserContext";
-import { isAuthenticated } from "../Config/helper";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { auth, getMovieData } from "../Config/firebaseConfig";
+import { Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const user = useContext(UserContext);
-  // const { photoURL, displayName, email } = user;
-  const history = useHistory();
+  // const history = useHistory();
 
   // console.log({ user });
   // if (user != null) console.log(user.email);
@@ -30,40 +30,56 @@ const ProfilePage = () => {
   return (
     <div>
       <Navbar />
-      <h1>This is the profile page</h1>
-      {/* {isAuthenticated() ? ( */}
-
-      {user ? (
-        <>
-          <h1>{user.email}</h1>
-          <h1>{user.displayName}</h1>
-          <img
-            src={
-              user.photoURL ||
-              "https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png"
-            }
-            alt="profile img"
-          />
-        </>
-      ) : (
-        ""
-      )}
-      <button
-        onClick={() => {
-          auth.signOut();
-        }}
-        // onClick={() => {
-        //   localStorage.setItem("uid", "");
-        //   localStorage.setItem("displayName", "");
-        //   localStorage.setItem("email", "");
-        //   history.push("/signin");
-        // }}
+      <div
+        className="flexBox"
+        style={{ height: "90vh", flexDirection: "column", color: "#e0fbfc" }}
       >
-        Logout
-      </button>
-      {/* ) : ( */}
-      {/* <Redirect to="/signin" /> */}
-      {/* )} */}
+        <Typography variant="h2">My Profile</Typography>
+        {/* {isAuthenticated() ? ( */}
+        {user ? (
+          <>
+            <img
+              src={
+                user.photoURL ||
+                "https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png"
+              }
+              alt="profile img"
+            />
+            <p>
+              <Typography variant="h6">Email: {user.email}</Typography>
+              <Typography variant="h6">Name: {user.displayName}</Typography>
+            </p>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#ee6c4d", color: "#fff" }}
+              onClick={() => {
+                auth.signOut();
+                // history.push("/signin");
+              }}
+            >
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Typography variant="h6">Please Signin to Continue</Typography>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#ee6c4d", color: "#fff" }}
+            >
+              <Link
+                to="/signin"
+                style={{ textDecoration: "none", color: "#e0fbfc" }}
+              >
+                Signin
+              </Link>{" "}
+            </Button>
+          </>
+        )}
+
+        {/* ) : ( */}
+        {/* )} */}
+      </div>
     </div>
   );
 };

@@ -1,19 +1,12 @@
+/* #FFCA5A -> Yellow
+#3d5a80 -> dark blue
+#98c1d9 -> Light blue
+#e0fbfc -> lightest blue 
+#ee6c4d -> red 
+#293241 -> black */
+
 body {
-  background-color: whitesmoke;
-  /* background-image: linear-gradient(90deg, #4e8eee 30%, #6933a7 90%); */
-  /* background-image: linear-gradient(
-    to right,
-    #0c1421,
-    #110e1a,
-    #100912,
-    #0b0408,
-    #000000
-  );
-  background-repeat: repeat-y;
-  background-size: cover; */
-  /* margin: 10px;
-  padding: 10px; */
-  /* height: 95vh; */
+  background-color: #293241;
 }
 .App {
   display: flex;
@@ -24,6 +17,30 @@ body {
   margin-bottom: 40px;
   min-height: 100%;
 }
+
+
+.g-button{
+  border: 1px solid rgb(66, 133, 244);
+  background: rgb(66, 133, 244);
+  display: flex;
+  align-items: center;
+}
+
+.g-logo{
+  width: 21px;
+  height: 21px;
+  padding: 4px 5px;
+  background: white;
+}
+
+.g-text{
+  font-size: 16px;
+  padding: 4px 5px;
+  color: white;
+  font-family: roboto;
+  text-align: center;
+}
+
 .stickyFooter {
   position: fixed;
   left: 0;
@@ -31,15 +48,15 @@ body {
   width: 100%;
   margin-top: 25px;
   padding: 10px 0px 10px 0px;
-  background-image: linear-gradient(
-    to right,
-    #0c1421,
-    #110e1a,
-    #100912,
-    #0b0408,
-    #000000
-  );
-  color: white;
+  background-color: #293241;
+  color: #e0fbfc;
   text-align: center;
   font-size: 15px;
+}
+
+/* Utilities */
+.flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

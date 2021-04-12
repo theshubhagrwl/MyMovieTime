@@ -19,8 +19,9 @@ const App = () => {
           variant="h1"
           style={{
             fontWeight: "bolder",
-            minWidth: "200px",
-            fontSize: "4.3rem",
+            minWidth: "150px",
+            fontSize: "3.5em",
+            color: "#FFCA5A",
           }}
         >
           MyMovieTime

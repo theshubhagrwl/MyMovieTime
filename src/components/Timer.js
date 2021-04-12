@@ -5,12 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   hrsAndMinCount: {
-    color: "#FFCA5A", //yellow
+    color: "#FFCA5A",
     fontSize: "5.4rem",
     fontWeight: "lighter",
   },
   hrsAndMinText: {
-    color: "white",
+    color: "#e0fbfc",
     fontSize: "1.2rem",
   },
 });
@@ -68,6 +68,7 @@ const Timer = () => {
           <div
             style={{
               marginTop: "20px",
+              color: "#e0fbfc",
             }}
           >
             Search for your favourite

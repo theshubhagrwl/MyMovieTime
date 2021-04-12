@@ -24,18 +24,18 @@ const useDebounce = (value, delay) => {
 const CssTextField = withStyles({
   root: {
     "& label.Mui-focused": {
-      color: "black",
+      color: "#e0fbfc",
     },
     "& label": {
-      color: "#FFCA5A",
-      fontWeight: "bold",
+      color: "#e0fbfc",
+      fontWeight: "lighter",
     },
     "& .MuiInput-underline:after": {
       borderBottomColor: "#FFCA5A",
       borderBottomWidth: "3px",
     },
     "& .MuiInput-underline:before": {
-      borderBottomColor: "black",
+      borderBottomColor: "#e0fbfc",
       borderBottomWidth: "3px",
     },
     "& .MuiOutlinedInput-root": {
@@ -43,7 +43,7 @@ const CssTextField = withStyles({
         borderColor: "#FFCA5A",
       },
       "&:hover fieldset": {
-        borderColor: "black",
+        borderColor: "#e0fbfc",
       },
       "&.Mui-focused fieldset": {
         borderColor: "#FFCA5A",
