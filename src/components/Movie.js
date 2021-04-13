@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
   titleText: {
     overflow: "hidden",
   },
+  // image: {
+  //   height: "30vh",
+  //   // width: "15vw",
+  // },
 }));
 
 function convertToInt(string) {
@@ -97,19 +101,24 @@ const Movie = () => {
         {contextData.searchArray.map((item, index) => {
           if (item.Poster !== "N/A") {
             return (
-              <Grid item xs={12} sm={4} lg={3} xl={3} key={index}>
+              <Grid item xs={10} sm={4} lg={2} xl={2} key={index}>
                 <Card raised={true} className={classes.root}>
+                  {/* <img
+                    src={item.Poster}
+                    alt={item.Title}
+                    className={classes.image}
+                  ></img> */}
                   <CardMedia
                     image={item.Poster}
                     title={item.Title}
                     height="450px"
-                    width="auto"
+                    // width="auto"
                     component="img"
                   />
                   <CardContent>
                     <Typography
                       gutterBottom
-                      variant="h5"
+                      variant="h6"
                       component="h2"
                       noWrap
                       className={classes.titleText}
@@ -130,9 +139,10 @@ const Movie = () => {
                     <ButtonGroup
                       orientation="vertical"
                       aria-label="vertical button group"
+                      style={{ width: "auto" }}
                     >
                       <Button
-                        size="medium"
+                        size="small"
                         variant="contained"
                         color="primary"
                         style={{ marginBottom: "15px" }}
@@ -141,7 +151,7 @@ const Movie = () => {
                         Add This Movie
                       </Button>
                       <Button
-                        size="medium"
+                        size="small"
                         variant="contained"
                         color="primary"
                         style={{ marginBottom: "15px" }}

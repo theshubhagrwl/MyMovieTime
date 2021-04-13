@@ -11,14 +11,23 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: "#fff",
+    zIndex: 10,
   },
   image: {
-    opacity: 0.4,
+    opacity: 0.5,
     width: "15vw",
+    zIndex: -1,
   },
   watchedMovieCard: {
-    background: "#3939396b",
+    // background: "#3939396b",
     margin: "2px",
+  },
+  textContainer: {
+    bottom: "30px",
+    position: "relative",
+    color: "#fff",
+    zIndex: 10,
+    fontWeight: "bold",
   },
 }));
 
@@ -32,20 +41,21 @@ const WatchedMovies = () => {
       {/* {fakeData.length > 1 ? ( */}
       {/* {fakeData.map((tile) => ( */}
       {contextData.watched.length > 0 ? (
-        <Grid container spacing={3}>
+        <Grid container>
           {contextData.watched.map((tile) => (
-            <Grid item xs className={classes.watchedMovieCard} key="title">
+            <Grid item xs className={classes.watchedMovieCard} key={tile.Title}>
               <img
                 className={classes.image}
                 src={tile.Poster}
                 alt={tile.Title}
               />
-              <Typography variant="subtitle1" className={classes.title}>
+              {/* <div className={classes.textContainer}>{tile.Title}</div> */}
+              <Typography variant="body1" className={classes.textContainer}>
                 {tile.Title}
               </Typography>
-              <Typography variant="subtitle2" className={classes.title}>
+              {/* <Typography variant="subtitle2" className={classes.title}>
                 {tile.Year}
-              </Typography>
+              </Typography> */}
             </Grid>
           ))}
         </Grid>
