@@ -63,17 +63,22 @@ const ProfilePage = () => {
         ) : (
           <>
             <Typography variant="h6">Please Signin to Continue</Typography>
-            <Button
+            {/* <Button
               variant="contained"
-              style={{ backgroundColor: "#ee6c4d", color: "#fff" }}
+              style={{ backgroundColor: "#FFCA5A", color: "#fff" }}
+            > */}
+            <Link
+              to="/signin"
+              style={{
+                textDecoration: "underline",
+                color: "#FFF222",
+                fontSize: "1.5em",
+                fontWeight: "bold",
+              }}
             >
-              <Link
-                to="/signin"
-                style={{ textDecoration: "none", color: "#e0fbfc" }}
-              >
-                Signin
-              </Link>{" "}
-            </Button>
+              Signin
+            </Link>{" "}
+            {/* </Button> */}
           </>
         )}
 

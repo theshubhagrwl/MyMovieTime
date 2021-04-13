@@ -6,7 +6,16 @@
 #293241 -> black */
 
 body {
-  background-color: #264653;
+  background-image: linear-gradient(
+    to right,
+    #0c1421,
+    #110e1a,
+    #100912,
+    #0b0408,
+    #000000
+  );
+  background-repeat: repeat-y;
+  background-size: cover;
   overflow-x: hidden;
 }
 .App {
@@ -48,7 +57,16 @@ body {
   width: 100vw;
   margin-top: 25px;
   padding: 10px 0px 10px 0px;
-  background-color: #293241;
+  background-image: linear-gradient(
+    to right,
+    #0c1421,
+    #110e1a,
+    #100912,
+    #0b0408,
+    #000000
+  );
+  background-repeat: repeat-y;
+  background-size: cover;
   color: #e0fbfc;
   text-align: center;
   font-size: 15px;

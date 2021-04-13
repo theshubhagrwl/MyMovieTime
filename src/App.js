@@ -20,8 +20,8 @@ const App = () => {
           style={{
             fontWeight: "bolder",
             minWidth: "150px",
-            fontSize: "3.5em",
-            color: "#FFCA5A",
+            fontSize: "3em",
+            color: "#FFF222",
           }}
         >
           MyMovieTime
