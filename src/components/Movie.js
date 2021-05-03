@@ -60,6 +60,7 @@ const Movie = () => {
   const [mTime, setMTime] = useState({});
   const time = useDebounce(mTime, 500);
   const [IMDBrating, setIMDBrating] = useState("");
+  const [ld, setLd] = useState(false);
 
   const handleClick = async (val) => {
     var movieId = val.imdbID;
@@ -111,8 +112,8 @@ const Movie = () => {
                   <CardMedia
                     image={item.Poster}
                     title={item.Title}
-                    height="450px"
-                    // width="auto"
+                    // height="450px"
+                    width="150px"
                     component="img"
                   />
                   <CardContent>
@@ -146,9 +147,13 @@ const Movie = () => {
                         variant="contained"
                         color="primary"
                         style={{ marginBottom: "15px" }}
-                        onClick={() => setMTime(item)}
+                        onClick={() => {
+                          setLd(true);
+                          console.log(item);
+                          setMTime(item);
+                        }}
                       >
-                        Add This Movie
+                        {ld ? "Loading" : "Add This Movie"}
                       </Button>
                       <Button
                         size="small"

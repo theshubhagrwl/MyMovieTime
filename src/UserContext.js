@@ -8,7 +8,7 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     auth.onAuthStateChanged((userAuth) => {
-      console.log("this is user context", userAuth);
+      // console.log("this is user context", userAuth);
       setUser(userAuth);
     });
   }, []);

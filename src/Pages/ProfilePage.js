@@ -1,32 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../UserContext";
-import { Redirect } from "react-router";
+import { MovieContext } from "../MovieContext";
+// import { Redirect } from "react-router";
 import { auth, getMovieData } from "../Config/firebaseConfig";
 import { Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import WatchedMovies from "../components/WatchedMovies";
 
 const ProfilePage = () => {
   const user = useContext(UserContext);
+  const movieData = useContext(MovieContext);
   // const history = useHistory();
 
-  // console.log({ user });
-  // if (user != null) console.log(user.email);
-  if (user) {
-    getMovieData(user.uid)
-      .then((doc) => {
-        if (doc.exists) {
-          console.log("doc data: ", doc.data().data);
-        } else {
-          console.log("doc not found");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  useEffect(() => {
+    if (user) {
+      getMovieData(user.uid)
+        .then((doc) => {
+          if (doc.exists) {
+            console.log("doc data: ", doc.data().data);
+            movieData.setWatched(doc.data().data);
+          } else {
+            console.log("doc not found");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [user]);
 
-    // console.log(movieDataFromFirestore);
-  }
+  const convertTime = () => {
+    var minutes = movieData.totalTime;
+    var hours = minutes / 60;
+    minutes = minutes % 60;
+    return [hours, minutes];
+  };
+
+  const arr = convertTime(movieData.totalTime);
+  const hr = Math.floor(arr[0]);
+  const min = arr[1];
+
   return (
     <div>
       <Navbar />
@@ -35,7 +49,6 @@ const ProfilePage = () => {
         style={{ height: "90vh", flexDirection: "column", color: "#e0fbfc" }}
       >
         <Typography variant="h2">My Profile</Typography>
-        {/* {isAuthenticated() ? ( */}
         {user ? (
           <>
             <img
@@ -45,10 +58,8 @@ const ProfilePage = () => {
               }
               alt="profile img"
             />
-            <p>
-              <Typography variant="h6">Email: {user.email}</Typography>
-              <Typography variant="h6">Name: {user.displayName}</Typography>
-            </p>
+            <Typography variant="h6">Email: {user.email}</Typography>
+            <Typography variant="h6">Name: {user.displayName}</Typography>
             <Button
               variant="contained"
               style={{ backgroundColor: "#ee6c4d", color: "#fff" }}
@@ -59,14 +70,18 @@ const ProfilePage = () => {
             >
               Logout
             </Button>
+            <div
+              style={{
+                margin: "10px",
+              }}
+            >
+              {hr}hrs {min}mins
+            </div>
+            <WatchedMovies />
           </>
         ) : (
           <>
             <Typography variant="h6">Please Signin to Continue</Typography>
-            {/* <Button
-              variant="contained"
-              style={{ backgroundColor: "#FFCA5A", color: "#fff" }}
-            > */}
             <Link
               to="/signin"
               style={{
@@ -78,12 +93,8 @@ const ProfilePage = () => {
             >
               Signin
             </Link>{" "}
-            {/* </Button> */}
           </>
         )}
-
-        {/* ) : ( */}
-        {/* )} */}
       </div>
     </div>
   );
