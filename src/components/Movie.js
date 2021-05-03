@@ -39,10 +39,6 @@ const useStyles = makeStyles((theme) => ({
   titleText: {
     overflow: "hidden",
   },
-  // image: {
-  //   height: "30vh",
-  //   // width: "15vw",
-  // },
 }));
 
 function convertToInt(string) {
@@ -60,7 +56,6 @@ const Movie = () => {
   const [mTime, setMTime] = useState({});
   const time = useDebounce(mTime, 500);
   const [IMDBrating, setIMDBrating] = useState("");
-  const [ld, setLd] = useState(false);
 
   const handleClick = async (val) => {
     var movieId = val.imdbID;
@@ -104,11 +99,6 @@ const Movie = () => {
             return (
               <Grid item xs={10} sm={4} lg={2} xl={2} key={index}>
                 <Card raised={true} className={classes.root}>
-                  {/* <img
-                    src={item.Poster}
-                    alt={item.Title}
-                    className={classes.image}
-                  ></img> */}
                   <CardMedia
                     image={item.Poster}
                     title={item.Title}
@@ -148,12 +138,10 @@ const Movie = () => {
                         color="primary"
                         style={{ marginBottom: "15px" }}
                         onClick={() => {
-                          setLd(true);
-                          console.log(item);
                           setMTime(item);
                         }}
                       >
-                        {ld ? "Loading" : "Add This Movie"}
+                        Add This Movie
                       </Button>
                       <Button
                         size="small"
