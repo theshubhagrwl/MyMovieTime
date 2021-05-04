@@ -24,7 +24,7 @@ const Signin = () => {
       <Navbar />
 
       {user ? (
-        <Redirect to="/profile" />
+        <Redirect to="/" />
       ) : (
         <div
           className="flexBox"
