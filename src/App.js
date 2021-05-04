@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import SearchBox from "./components/SearchBox";
-// import { MovieProvider } from "./MovieContext";
 import Movie from "./components/Movie";
 import Timer from "./components/Timer";
 import Typography from "@material-ui/core/Typography";
@@ -9,9 +8,32 @@ import Footer from "./components/Footer";
 import WatchedMovies from "./components/WatchedMovies";
 import Navbar from "./components/Navbar";
 
+import { UserContext } from "./UserContext";
+import { MovieContext } from "./MovieContext";
+
+import { getMovieData } from "./Config/firebaseConfig";
+
 const App = () => {
+  const user = useContext(UserContext);
+  const movieData = useContext(MovieContext);
+
+  useEffect(() => {
+    if (user) {
+      getMovieData(user.uid)
+        .then((doc) => {
+          if (doc.exists) {
+            movieData.setWatched(doc.data().data);
+          } else {
+            console.log("doc not found");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [user]);
+
   return (
-    // <MovieProvider>
     <>
       <Navbar />
       <div className="App">
@@ -41,7 +63,6 @@ const App = () => {
         </div>
       </div>
     </>
-    // </MovieProvider>
   );
 };
 
