@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import Axios from "axios";
 import { MovieContext } from "../MovieContext";
 import { makeStyles } from "@material-ui/core/styles";
@@ -54,7 +53,6 @@ const Movie = () => {
   const classes = useStyles();
   const [mTime, setMTime] = useState({});
   const time = useDebounce(mTime, 500);
-  const [IMDBrating, setIMDBrating] = useState("");
 
   const handleClick = async (val) => {
     var movieId = val.imdbID;
