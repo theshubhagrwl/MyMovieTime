@@ -4,13 +4,7 @@ import "../App.css";
 export default function Footer() {
   return (
     <div className="stickyFooter">
-      Made with ❤️ in{" "}
-      {/* <img
-        src="https://img.icons8.com/doodle/48/000000/india.png"
-        height="20px"
-        width="20px"
-      /> */}
-      India by{" "}
+      Made with ❤️ in India by{" "}
       <a
         href="https://theshubhagrwl.vercel.app/"
         style={{ color: "yellow", textDecoration: "none" }}

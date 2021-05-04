@@ -5,7 +5,6 @@ import { MovieContext } from "../MovieContext";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -66,8 +65,6 @@ const Movie = () => {
         `https://www.omdbapi.com/?apikey=${API_KEY}&i=${movieId}`
       );
       if (typeof response.data === "object") {
-        // console.log(response.data);
-        // console.log("type", typeof response.data);
         contextData.watched.push(response.data);
       }
       if (user) {

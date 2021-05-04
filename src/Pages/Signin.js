@@ -7,15 +7,12 @@ import "../App.css";
 
 const Signin = () => {
   const user = useContext(UserContext);
-  // const history = useHistory();
 
-  console.log("usercontext wala hai ye", user);
   const signInWithGoogle = () => {
     auth
       .signInWithPopup(googleProvider)
       .then((res) => {
-        // console.log(res.user);
-        // history.replace("/profile");
+        console.log("Success");
       })
       .catch((error) => {
         console.log(error.message);

@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { MovieContext } from "../MovieContext";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import fakeData from "../testData";
+// import fakeData from "../testData";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -94,7 +94,6 @@ const SearchBox = () => {
           contextData.setError(res.data.Error);
         }
       });
-      console.log("Search term", searchTerm);
     } catch (error) {
       console.log(error);
     }

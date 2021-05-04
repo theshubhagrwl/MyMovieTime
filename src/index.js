@@ -3,19 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-// import firebase from "firebase/app";
-// import "firebase/auth";
-// import firebaseConfig from "./Config/firebaseConfig";
-
 import { UserProvider } from "./UserContext";
 import { MovieProvider } from "./MovieContext";
-
 import Signin from "./Pages/Signin";
 import ProfilePage from "./Pages/ProfilePage";
 import PageNotFound from "./Pages/PageNotFound";
-
-// firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>

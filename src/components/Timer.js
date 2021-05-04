@@ -43,8 +43,6 @@ const Timer = () => {
               justifyContent: "center",
               paddingTop: "5px",
               paddingBottom: "5px",
-              // marginTop: "2px",
-              // marginBottom: "2px",
             }}
           >
             <Typography classes={{ root: classes.hrsAndMinCount }}>

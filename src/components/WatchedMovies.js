@@ -2,10 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { MovieContext } from "../MovieContext";
 import { Grid, Button } from "@material-ui/core";
-
 import { deleteMovie } from "../Config/firebaseConfig";
 import { UserContext } from "../UserContext";
-// import fakeData from "../testData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
