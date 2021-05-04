@@ -1,7 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { MovieContext } from "../MovieContext";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
+
+import { deleteMovie } from "../Config/firebaseConfig";
+import { UserContext } from "../UserContext";
 // import fakeData from "../testData";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,38 +16,38 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     zIndex: 10,
   },
+  imageContainer: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
   image: {
-    opacity: 0.5,
-    width: "10vw",
+    // width: "15vh",
+    maxHeight: "20vh",
     zIndex: -1,
+    opacity: 0.7,
   },
   watchedMovieCard: {
-    // background: "#3939396b",
-    margin: "2px",
+    margin: "0px",
   },
   textContainer: {
-    bottom: "30px",
-    position: "relative",
-    color: "#fff",
+    top: "0%",
+    [theme.breakpoints.up("sm")]: {
+      right: "0%",
+    },
+    right: "30%",
+    position: "absolute",
     zIndex: 10,
-    fontWeight: "bold",
+    color: "red",
+    fontSize: "3.5vh",
   },
 }));
 
 const WatchedMovies = () => {
   const classes = useStyles();
   const contextData = useContext(MovieContext);
-
-  // const convertTime = () => {
-  //   var minutes = contextData.totalTime;
-  //   var hours = minutes / 60;
-  //   minutes = minutes % 60;
-  //   return [hours, minutes];
-  // };
-
-  // const arr = convertTime(contextData.totalTime);
-  // const hr = Math.floor(arr[0]);
-  // const min = arr[1];
+  const user = useContext(UserContext);
 
   function convertToInt(string) {
     const parsed = parseInt(string, 10);
@@ -54,11 +57,6 @@ const WatchedMovies = () => {
     return parsed;
   }
 
-  // movieTime = response.data.Runtime;
-  //     totalMovieTime = contextData.totalTime + convertToInt(movieTime);
-  //     contextData.setLoading(false);
-  //     contextData.setTotalTime(totalMovieTime);
-
   const calcTime = () => {
     var movieTime = "";
     var totalMovieTime = 0;
@@ -67,7 +65,6 @@ const WatchedMovies = () => {
       totalMovieTime += convertToInt(movieTime);
     });
     contextData.setTotalTime(totalMovieTime);
-    console.log(totalMovieTime);
   };
 
   useEffect(() => {
@@ -75,10 +72,7 @@ const WatchedMovies = () => {
   }, [contextData.watched]);
 
   return (
-    //TODO: A button telling show more cause displaying all movies is a mess!
     <div className={classes.root}>
-      {/* {fakeData.length > 1 ? ( */}
-      {/* {fakeData.map((tile) => ( */}
       {contextData.watched.length > 0 ? (
         <Grid container>
           {contextData.watched.map((tile) => (
@@ -88,18 +82,33 @@ const WatchedMovies = () => {
               className={classes.watchedMovieCard}
               key={tile.imdbID}
             >
-              <img
-                className={classes.image}
-                src={tile.Poster}
-                alt={tile.Title}
-              />
-              {/* <div className={classes.textContainer}>{tile.Title}</div> */}
-              <Typography variant="body1" className={classes.textContainer}>
-                {tile.Title}
-              </Typography>
-              {/* <Typography variant="subtitle2" className={classes.title}>
-                {tile.Year}
-              </Typography> */}
+              <div className={classes.imageContainer}>
+                <img
+                  className={classes.image}
+                  src={tile.Poster}
+                  alt={tile.Title}
+                />
+                <Button
+                  variant="contained"
+                  size="small"
+                  style={{
+                    backgroundColor: "#ee6c4d",
+                    color: "#fff",
+                    marginTop: "1vh",
+                  }}
+                  onClick={() => {
+                    deleteMovie(tile, user.uid);
+                    console.log(`Deleted : ${tile.Title}`);
+                    contextData.setWatched(
+                      contextData.watched.filter(
+                        (item) => item.imdbID !== tile.imdbID
+                      )
+                    );
+                  }}
+                >
+                  Delete
+                </Button>
+              </div>
             </Grid>
           ))}
         </Grid>

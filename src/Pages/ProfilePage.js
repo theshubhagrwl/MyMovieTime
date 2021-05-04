@@ -1,14 +1,37 @@
 import React, { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import Timer from "../components/Timer";
 import { UserContext } from "../UserContext";
 import { MovieContext } from "../MovieContext";
 // import { Redirect } from "react-router";
-import { auth, getMovieData } from "../Config/firebaseConfig";
+import { auth, getMovieData, deleteMovie } from "../Config/firebaseConfig";
 import { Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import WatchedMovies from "../components/WatchedMovies";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  marginTopAndBottom: {
+    marginTop: "2vh",
+    marginBottom: "2vh",
+  },
+  profilePic: {
+    borderRadius: "50%",
+    marginRight: "3vh",
+  },
+  profileInfo: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "2vh",
+    marginBottom: "2vh",
+  },
+});
 
 const ProfilePage = () => {
+  const classes = useStyles();
+
   const user = useContext(UserContext);
   const movieData = useContext(MovieContext);
   // const history = useHistory();
@@ -18,7 +41,7 @@ const ProfilePage = () => {
       getMovieData(user.uid)
         .then((doc) => {
           if (doc.exists) {
-            console.log("doc data: ", doc.data().data);
+            // console.log("doc data: ", doc.data().data);
             movieData.setWatched(doc.data().data);
           } else {
             console.log("doc not found");
@@ -48,18 +71,25 @@ const ProfilePage = () => {
         className="flexBox"
         style={{ height: "90vh", flexDirection: "column", color: "#e0fbfc" }}
       >
-        <Typography variant="h2">My Profile</Typography>
+        <Typography variant="h2" className={classes.marginTopAndBottom}>
+          My Profile
+        </Typography>
         {user ? (
           <>
-            <img
-              src={
-                user.photoURL ||
-                "https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png"
-              }
-              alt="profile img"
-            />
-            <Typography variant="h6">Email: {user.email}</Typography>
-            <Typography variant="h6">Name: {user.displayName}</Typography>
+            <div className={classes.profileInfo}>
+              <img
+                src={
+                  user.photoURL ||
+                  "https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png"
+                }
+                alt="profile img"
+                className={classes.profilePic}
+              />
+              <div className={classes.marginTopAndBottom}>
+                <Typography variant="body1">{user.displayName}</Typography>
+                <Typography variant="caption">{user.email}</Typography>
+              </div>
+            </div>
             <Button
               variant="contained"
               style={{ backgroundColor: "#ee6c4d", color: "#fff" }}
@@ -67,16 +97,11 @@ const ProfilePage = () => {
                 auth.signOut();
                 // history.push("/signin");
               }}
+              className={classes.marginTopAndBottom}
             >
               Logout
             </Button>
-            <div
-              style={{
-                margin: "10px",
-              }}
-            >
-              {hr}hrs {min}mins
-            </div>
+            <Timer />
             <WatchedMovies />
           </>
         ) : (

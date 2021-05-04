@@ -71,8 +71,11 @@ const Movie = () => {
         contextData.watched.push(response.data);
       }
       if (user) {
-        // console.log(contextData.watched);
-        addMovieData(contextData.watched, user.uid);
+        if (contextData.watched.length > 0) {
+          addMovieData(contextData.watched, user.uid);
+        } else {
+          console.log("No Movies Added");
+        }
       }
 
       movieTime = response.data.Runtime;
