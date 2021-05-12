@@ -27,7 +27,7 @@ const Timer = () => {
     return [hours, minutes];
   };
 
-  const arr = convertTime(contextData.totalTime);
+  const arr = convertTime();
   const hr = Math.floor(arr[0]);
   const min = arr[1];
 

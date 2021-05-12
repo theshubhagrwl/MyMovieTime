@@ -65,6 +65,13 @@ const WatchedMovies = () => {
     contextData.setTotalTime(totalMovieTime);
   };
 
+  const convertToHrsandMins = (time) => {
+    var min = time;
+    var hr = min / 60;
+    min = min % 60;
+    return [hr, min];
+  };
+
   useEffect(() => {
     calcTime();
   }, [contextData.watched]);
@@ -86,6 +93,16 @@ const WatchedMovies = () => {
                   src={tile.Poster}
                   alt={tile.Title}
                 />
+                <div style={{ color: "#fff" }}>
+                  {Math.floor(
+                    convertToHrsandMins(convertToInt(tile.Runtime))[0]
+                  )}
+                  hr{" "}
+                  {Math.floor(
+                    convertToHrsandMins(convertToInt(tile.Runtime))[1]
+                  )}
+                  min{" "}
+                </div>
                 <Button
                   variant="contained"
                   size="small"
