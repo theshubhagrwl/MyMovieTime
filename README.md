@@ -10,10 +10,6 @@
 [![Stars](https://img.shields.io/github/stars/theshubhagrwl/MyMovieTime?style=flat-square)]()
 [![Forks](https://img.shields.io/github/forks/theshubhagrwl/MyMovieTime?style=flat-square)]()
 
-<hr>
-<img src='./demo/mymovietime.gif'> 
-<hr>
-
 ## Live Demo
 
 ### <img src='./public/favicon.png' width='20px'> [MyMovieTime](https://mymovietime.netlify.app/)
@@ -22,10 +18,12 @@
 
 - React Js
 - OMDB API
+- Firebase (Auth and Firestore)
 - Material UI
 - JS Debouncing
 
-#### Check out the app and provide your valuable feedback😉
+<hr>
 
-## Contributing Guid
-If you want to contribute to this project then you can check the [Contributing Guide Here](https://github.com/theshubhagrwl/MyMovieTime/blob/master/CONTRIBUTING.md)
+## Contributing Guide
+
+If you want to contribute to this project then please check the [Contributing Guide Here](https://github.com/theshubhagrwl/MyMovieTime/blob/master/CONTRIBUTING.md)
