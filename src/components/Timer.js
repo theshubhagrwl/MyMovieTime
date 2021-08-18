@@ -1,24 +1,9 @@
 import React, { useContext } from "react";
 import { MovieContext } from "../MovieContext";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
-  hrsAndMinCount: {
-    color: "#FFF222",
-    fontSize: "5.4rem",
-    fontWeight: "lighter",
-  },
-  hrsAndMinText: {
-    color: "#e0fbfc",
-    fontSize: "1.2rem",
-  },
-});
-
-const Timer = () => {
+const Timer = ({ timerStyle }) => {
   const contextData = useContext(MovieContext);
-
-  const classes = useStyles();
 
   const convertTime = () => {
     var minutes = contextData.totalTime;
@@ -32,61 +17,9 @@ const Timer = () => {
   const min = arr[1];
 
   return (
-    <div>
-      <Typography variant="h5">
-        {hr > 0 && min > 0 ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "baseline",
-              justifyContent: "center",
-              paddingTop: "5px",
-              paddingBottom: "5px",
-            }}
-          >
-            <Typography classes={{ root: classes.hrsAndMinCount }}>
-              {hr}
-            </Typography>{" "}
-            <Typography
-              classes={{ root: classes.hrsAndMinText }}
-              style={{ paddingRight: "10px" }}
-            >
-              hr
-            </Typography>{" "}
-            <Typography classes={{ root: classes.hrsAndMinCount }}>
-              {min}
-            </Typography>
-            <Typography classes={{ root: classes.hrsAndMinText }}>
-              min
-            </Typography>{" "}
-            <br />
-          </div>
-        ) : (
-          <div
-            style={{
-              marginTop: "20px",
-              color: "#e0fbfc",
-              fontSize: "1em",
-              fontWeight: "lighter",
-            }}
-          >
-            Search for your favourite
-            <span
-              style={{
-                color: "#FFF222",
-                fontWeight: "light",
-                marginLeft: "0.5rem",
-                marginRight: "0.5rem",
-              }}
-            >
-              Movie
-            </span>
-            to get started
-          </div>
-        )}
-      </Typography>
-    </div>
+    <Typography variant="body1" className={timerStyle}>
+      {hr}h {min}min
+    </Typography>
   );
 };
 

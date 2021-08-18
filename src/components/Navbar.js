@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import SearchBox from "./SearchBox";
+import Timer from "./Timer";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   rightItems: {
     display: "flex",
     flexGrow: 0.1,
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
 }));
 
@@ -64,6 +65,10 @@ const Navbar = () => {
           <SearchBox placeholderText={"Search here..."} />
 
           <div className={classes.rightItems}>
+            <Typography variant="body1" className={classes.title}>
+              <Timer timerStyle={{ color: "#fff" }} />
+            </Typography>
+
             <Typography variant="body1" className={classes.subLink}>
               {auth ? (
                 <Link className={classes.subLink} to="/profile">

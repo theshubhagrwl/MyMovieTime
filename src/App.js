@@ -1,7 +1,4 @@
 import React, { useEffect, useContext } from "react";
-import SearchBox from "./components/SearchBox";
-import Movie from "./components/Movie";
-import Timer from "./components/Timer";
 import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import Footer from "./components/Footer";
@@ -48,10 +45,7 @@ const App = () => {
         >
           MyMovieTime
         </Typography> */}
-        <Timer />
-        {/* <SearchBox /> */}
         <WatchedMovies />
-        <Movie />
         <div
           style={{
             minHeight: "100%",
