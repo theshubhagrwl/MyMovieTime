@@ -37,7 +37,7 @@ const App = () => {
     <>
       <Navbar />
       <div className="App">
-        <Typography
+        {/* <Typography
           variant="h1"
           style={{
             fontWeight: "bolder",
@@ -47,9 +47,9 @@ const App = () => {
           }}
         >
           MyMovieTime
-        </Typography>
+        </Typography> */}
         <Timer />
-        <SearchBox />
+        {/* <SearchBox /> */}
         <WatchedMovies />
         <Movie />
         <div

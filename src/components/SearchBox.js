@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import Axios from "axios";
-import TextField from "@material-ui/core/TextField";
 import { MovieContext } from "../MovieContext";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles, alpha } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 // import fakeData from "../testData";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -21,54 +22,50 @@ const useDebounce = (value, delay) => {
   return debouncedValue;
 };
 
-const CssTextField = withStyles({
-  root: {
-    "& label.Mui-focused": {
-      color: "#e0fbfc",
-    },
-    "& label": {
-      color: "#e0fbfc",
-      fontWeight: "lighter",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#FFCA5A",
-      borderBottomWidth: "3px",
-    },
-    "& .MuiInput-underline:before": {
-      borderBottomColor: "#e0fbfc",
-      borderBottomWidth: "3px",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#FFCA5A",
-      },
-      "&:hover fieldset": {
-        borderColor: "#e0fbfc",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#FFCA5A",
-      },
-    },
-  },
-})(TextField);
-
 const useStyles = makeStyles((theme) => ({
-  textInput: {
-    textAlign: "center",
-    color: "#FFCA5A",
-    fontSize: "18px",
-    paddingTop: "10px",
-    textTransform: "uppercase",
+  search: {
+    flexGrow: 0.8,
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
   },
-  margin: {
-    margin: theme.spacing(1),
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  spanError: {
-    color: "#000",
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
   },
 }));
 
-const SearchBox = () => {
+const SearchBox = ({ placeholderText }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const contextData = useContext(MovieContext);
   const classes = useStyles();
@@ -107,38 +104,21 @@ const SearchBox = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <div>
-      <div
-        style={{
-          marginBottom: "15px",
-          paddingTop: "5px",
-          paddingBottom: "5px",
-          minWidth: "250px",
-        }}
-      >
-        <CssTextField
-          style={{
-            margin: "20px",
-            width: "22ch",
-            minWidth: "250px",
+    <>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
+        </div>
+        <InputBase
+          placeholder={placeholderText}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
           }}
-          className={classes.margin}
-          label="Enter a movie name"
-          variant="standard"
+          inputProps={{ "aria-label": "search" }}
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-          }}
-          id="custom-css-outlined-input"
-          inputProps={{
-            className: classes.textInput,
-          }}
-          InputProps={{
-            className: classes.textInput,
-          }}
-          InputLabelProps={{
-            className: classes.textInput,
-            // style: { marginLeft: "2rem" },
           }}
         />
       </div>
@@ -147,7 +127,7 @@ const SearchBox = () => {
           {contextData.error}
         </Typography>
       )}
-    </div>
+    </>
   );
 };
 

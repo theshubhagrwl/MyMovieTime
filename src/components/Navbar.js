@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, StylesProvider, alpha } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import SearchBox from "./SearchBox";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   menuButton: {
     marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
   },
   mainLink: {
     textDecoration: "none",
@@ -25,6 +20,23 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "#fff",
   },
+  root: {
+    flexGrow: 1,
+  },
+  leftItems: {
+    display: "flex",
+    flexGrow: 0.1,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  title: {
+    padding: "0px 1em",
+  },
+  rightItems: {
+    display: "flex",
+    flexGrow: 0.1,
+    justifyContent: "center",
+  },
 }));
 
 const Navbar = () => {
@@ -34,14 +46,25 @@ const Navbar = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ backgroundColor: "transparent" }}>
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            <Link className={classes.mainLink} to="/">
-              MyMovieTime
-            </Link>
-          </Typography>
-          <div>
-            <Typography variant="subtitle1" className={classes.title}>
+        <Toolbar style={{ justifyContent: "space-between" }}>
+          <div className={classes.leftItems}>
+            <Typography variant="body1" className={classes.title}>
+              <Link className={classes.mainLink} to="/">
+                Movies
+              </Link>
+            </Typography>
+            <Typography variant="body1" className={classes.title}>
+              <Link className={classes.mainLink} to="/">
+                Tv Shows
+              </Link>
+            </Typography>
+            <Typography variant="body1" className={classes.title}></Typography>
+          </div>
+
+          <SearchBox placeholderText={"Search here..."} />
+
+          <div className={classes.rightItems}>
+            <Typography variant="body1" className={classes.subLink}>
               {auth ? (
                 <Link className={classes.subLink} to="/profile">
                   My Profile
