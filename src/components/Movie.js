@@ -36,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
   titleText: {
     overflow: "hidden",
+    fontWeight: "bold",
+  },
+  cardImage: {
+    objectFit: "contain",
+    height: "auto",
   },
 }));
 
@@ -92,16 +97,15 @@ const Movie = () => {
   if (!contextData.loading && contextData.searchArray !== undefined) {
     return (
       <Grid container spacing={4} justify="center">
-        {contextData.searchArray.map((item, index) => {
+        {contextData.searchArray.map((item) => {
           if (item.Poster !== "N/A") {
             return (
-              <Grid item xs={10} sm={4} lg={2} xl={2} key={index}>
+              <Grid item xs={10} sm={4} lg={2} xl={2} key={item.imdbID}>
                 <Card raised={true} className={classes.root}>
                   <CardMedia
                     image={item.Poster}
                     title={item.Title}
-                    // height="450px"
-                    width="150px"
+                    className={classes.cardImage}
                     component="img"
                   />
                   <CardContent>
@@ -139,12 +143,12 @@ const Movie = () => {
                           setMTime(item);
                         }}
                       >
-                        Add This Movie
+                        Mark Watched
                       </Button>
                       <Button
                         size="small"
                         variant="contained"
-                        color="primary"
+                        color="secondary"
                         style={{ marginBottom: "15px" }}
                       >
                         <a
@@ -152,7 +156,7 @@ const Movie = () => {
                           target="_blank"
                           style={{ textDecoration: "none", color: "white" }}
                         >
-                          Check On IMDB
+                          More Details
                         </a>
                       </Button>
                     </ButtonGroup>
