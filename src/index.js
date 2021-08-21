@@ -11,6 +11,7 @@ import PageNotFound from "./Pages/PageNotFound";
 import SearchPage from "./Pages/SearchPage";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./Theme";
+import MovieDetail from "./components/MovieDetail";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.render(
             <Switch>
               <Route exact path="/" component={App} />
               <Route exact path="/search" component={SearchPage} />
+              <Route path="/movie/:id" component={MovieDetail} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/profile" component={ProfilePage} />
               <Route exact path="*" component={PageNotFound} />

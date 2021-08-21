@@ -1,4 +1,4 @@
-const fakeData = [
+export const fakeData = [
   {
     Title: "Django Unchained",
     Year: "2012",
@@ -80,4 +80,45 @@ const fakeData = [
       "https://m.media-amazon.com/images/M/MV5BMTdmN2Y5M2QtYTEwZC00OWEzLWFjZmQtMDk1ZjZmZGVhMmY1XkEyXkFqcGdeQXVyMjU4NzU2OTA@._V1_SX300.jpg",
   },
 ];
-export default fakeData;
+
+export const movieDetail = {
+  Title: "Django Unchained",
+  Year: "2012",
+  Rated: "R",
+  Released: "25 Dec 2012",
+  Runtime: "165 min",
+  Genre: "Drama, Western",
+  Director: "Quentin Tarantino",
+  Writer: "Quentin Tarantino",
+  Actors: "Jamie Foxx, Christoph Waltz, Leonardo DiCaprio",
+  Plot: "With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation-owner in Mississippi.",
+  Language: "English, German, French, Italian",
+  Country: "United States",
+  Awards: "Won 2 Oscars. 58 wins & 158 nominations total",
+  Poster:
+    "https://m.media-amazon.com/images/M/MV5BMjIyNTQ5NjQ1OV5BMl5BanBnXkFtZTcwODg1MDU4OA@@._V1_SX300.jpg",
+  Ratings: [
+    {
+      Source: "Internet Movie Database",
+      Value: "8.4/10",
+    },
+    {
+      Source: "Rotten Tomatoes",
+      Value: "87%",
+    },
+    {
+      Source: "Metacritic",
+      Value: "81/100",
+    },
+  ],
+  Metascore: "81",
+  imdbRating: "8.4",
+  imdbVotes: "1,415,522",
+  imdbID: "tt1853728",
+  Type: "movie",
+  DVD: "24 Mar 2017",
+  BoxOffice: "$162,805,434",
+  Production: "A Band Apart",
+  Website: "N/A",
+  Response: "True",
+};

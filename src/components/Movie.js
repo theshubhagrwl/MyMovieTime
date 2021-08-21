@@ -14,6 +14,7 @@ import loadingImg from "./loading.gif";
 import { ButtonGroup } from "@material-ui/core";
 import { addMovieData } from "../Config/firebaseConfig";
 import { UserContext } from "../UserContext";
+import { Link } from "react-router-dom";
 
 const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 
@@ -151,13 +152,12 @@ const Movie = () => {
                         color="secondary"
                         style={{ marginBottom: "15px" }}
                       >
-                        <a
-                          href={`https://www.imdb.com/title/${item.imdbID}`}
-                          target="_blank"
+                        <Link
+                          to={`/movie/${item.imdbID}`}
                           style={{ textDecoration: "none", color: "white" }}
                         >
                           More Details
-                        </a>
+                        </Link>
                       </Button>
                     </ButtonGroup>
                   </CardActions>
