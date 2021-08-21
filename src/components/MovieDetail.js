@@ -37,17 +37,41 @@ const MovieDetail = (props) => {
   const classes = useStyles();
 
   const getData = async () => {
-    // const response = await axios.get(
-    //   `https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
-    // );
-    // setMovieData(() => response.data);
-    const response = movieDetail;
-    setMovieData(() => response);
+    const response = await axios.get(
+      `https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
+    );
+    setMovieData(response.data);
+    // setMovieData(() => movieDetail);
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  const MovieRating = () => {
+    console.log(movieData);
+    return (
+      <div>
+        {movieData.Ratings.map((item) => (
+          <li key={item.Source}>
+            <Typography variant="h6">
+              {item.Source} : {item.Value}
+            </Typography>
+          </li>
+        ))}
+        {/* <li>
+          <Typography variant="h6">
+            IMDB: {movieData.Ratings[0].Value}
+          </Typography>
+        </li>
+        <li>
+          <Typography variant="h6">
+            {movieData.Ratings[1].Source} : {movieData.Ratings[1].Value}
+          </Typography>
+        </li> */}
+      </div>
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -79,16 +103,8 @@ const MovieDetail = (props) => {
           <Typography variant="h6">Plot</Typography>
           <li>{movieData.Plot}</li>
           <br />
-          <li>
-            <Typography variant="h6">
-              IMDB: {movieData.Ratings[0].Value}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="h6">
-              {movieData.Ratings[1].Source} : {movieData.Ratings[1].Value}
-            </Typography>
-          </li>
+
+          {/* <MovieRating /> */}
         </ul>
       </div>
     </div>
