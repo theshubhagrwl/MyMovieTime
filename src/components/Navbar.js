@@ -51,12 +51,7 @@ const Navbar = () => {
           <div className={classes.leftItems}>
             <Typography variant="body1" className={classes.title}>
               <Link className={classes.mainLink} to="/">
-                Movies
-              </Link>
-            </Typography>
-            <Typography variant="body1" className={classes.title}>
-              <Link className={classes.mainLink} to="/">
-                Tv Shows
+                MyMovieTime
               </Link>
             </Typography>
             <Typography variant="body1" className={classes.title}></Typography>

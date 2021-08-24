@@ -46,17 +46,6 @@ const App = () => {
     <>
       <Navbar />
       <div className="App">
-        {/* <Typography
-          variant="h1"
-          style={{
-            fontWeight: "bolder",
-            minWidth: "150px",
-            fontSize: "3em",
-            color: "#FFF222",
-          }}
-        >
-          MyMovieTime
-        </Typography> */}
         {searchArray.length > 0 ? (
           <Movie />
         ) : (
@@ -66,6 +55,9 @@ const App = () => {
             </Typography>
           </div>
         )}
+        <Typography variant="h4" gutterBottom style={{ color: "#fff" }}>
+          Popular Movies
+        </Typography>
         <PopularMovie />
         <WatchedMovies />
         <div
