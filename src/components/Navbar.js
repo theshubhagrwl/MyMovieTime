@@ -54,6 +54,11 @@ const Navbar = () => {
                 MyMovieTime
               </Link>
             </Typography>
+            <Typography variant="body1" className={classes.title}>
+              <a className={classes.mainLink} href="/">
+                Home
+              </a>
+            </Typography>
             <Typography variant="body1" className={classes.title}></Typography>
           </div>
 
