@@ -9,10 +9,22 @@ import { UserContext } from "./UserContext";
 import { MovieContext } from "./MovieContext";
 
 import { getMovieData } from "./Config/firebaseConfig";
+import Movie from "./components/Movie";
+import { makeStyles } from "@material-ui/core";
+import PopularMovie from "./components/PopularMovie";
+
+const useStyles = makeStyles((theme) => ({
+  mainText: {
+    color: "#FFF222",
+  },
+}));
 
 const App = () => {
   const user = useContext(UserContext);
   const movieData = useContext(MovieContext);
+  const { searchArray } = useContext(MovieContext);
+
+  const classes = useStyles();
 
   useEffect(() => {
     if (user) {
@@ -45,6 +57,16 @@ const App = () => {
         >
           MyMovieTime
         </Typography> */}
+        {searchArray.length > 0 ? (
+          <Movie />
+        ) : (
+          <div>
+            <Typography variant="h4" className={classes.mainText}>
+              Search your favourite movie
+            </Typography>
+          </div>
+        )}
+        <PopularMovie />
         <WatchedMovies />
         <div
           style={{
