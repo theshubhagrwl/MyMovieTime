@@ -4,6 +4,7 @@ import Axios from "axios";
 
 import { movieDetail } from "../testData";
 import { Button, Typography } from "@material-ui/core";
+import SimilarMovie from "./SimilarMovie";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
@@ -31,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
   },
   poster: {
     maxHeight: "50vh",
+  },
+  similar: {
+    padding: "0px 10px",
+    color: "#fff",
+    // display: "flex",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
 }));
 
@@ -71,11 +79,11 @@ const MovieDetail = (props) => {
   );
 
   return (
-    <div className={classes.root}>
+    <>
       {loading ? (
         <Typography variant="h2">Loading</Typography>
       ) : (
-        <>
+        <div className={classes.root}>
           <div className={classes.leftContainer}>
             <img
               alt={movieData.title}
@@ -122,9 +130,15 @@ const MovieDetail = (props) => {
               </div>
             </ul>
           </div>
-        </>
+        </div>
       )}
-    </div>
+      <div className={classes.similar}>
+        <Typography variant="h4" gutterBottom>
+          Similar Movies
+        </Typography>
+        <SimilarMovie movieId={id} />
+      </div>
+    </>
   );
 };
 

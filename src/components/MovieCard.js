@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { ButtonGroup } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,12 +76,12 @@ const MovieCard = ({ item }) => {
               color="secondary"
               style={{ marginBottom: "15px" }}
             >
-              {/* <Link
-                          to={`/movie/${item.imdbID}`}
-                          style={{ textDecoration: "none", color: "white" }}
-                        > */}
-              More Details
-              {/* </Link> */}
+              <Link
+                to={`/movie/${item.id}`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                More Details
+              </Link>
             </Button>
           </ButtonGroup>
         </CardActions>
