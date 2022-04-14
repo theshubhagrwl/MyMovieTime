@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { MovieContext } from "../MovieContext";
-import { Grid, Button } from "@material-ui/core";
+import React, { useContext, useEffect } from "react";
 import { deleteMovie } from "../Config/firebaseConfig";
+import { MovieContext } from "../MovieContext";
 import { UserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -112,7 +112,10 @@ const WatchedMovies = () => {
                     marginTop: "1vh",
                   }}
                   onClick={() => {
-                    deleteMovie(tile, user.uid);
+                    if (user) {
+                      deleteMovie(tile, user.uid);
+                    }
+
                     console.log(`Deleted : ${tile.Title}`);
                     contextData.setWatched(
                       contextData.watched.filter(
