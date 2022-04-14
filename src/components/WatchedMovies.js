@@ -4,6 +4,7 @@ import { MovieContext } from "../MovieContext";
 import { Grid, Button } from "@material-ui/core";
 import { deleteMovie } from "../Config/firebaseConfig";
 import { UserContext } from "../UserContext";
+import { isAuthenticated } from "../Config/helper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,13 +113,21 @@ const WatchedMovies = () => {
                     marginTop: "1vh",
                   }}
                   onClick={() => {
-                    deleteMovie(tile, user.uid);
-                    console.log(`Deleted : ${tile.Title}`);
+                    if (isAuthenticated && user) {
+                      deleteMovie(tile, user.uid);
+                      contextData.setWatched(
+                        contextData.watched.filter(
+                          (item) => item.imdbID !== tile.imdbID
+                        )
+                      );
+                    }
+
                     contextData.setWatched(
                       contextData.watched.filter(
                         (item) => item.imdbID !== tile.imdbID
                       )
                     );
+                    console.log(`Deleted : ${tile.Title}`);
                   }}
                 >
                   Delete
